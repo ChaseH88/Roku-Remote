@@ -55,8 +55,8 @@ module.exports = {
     extensions: ["*", ".js", ".jsx", ".css", ".ts", ".tsx"]
   },
   output: {
-    path: `${resolve(__dirname)}/dist`,
+    path: `${resolve(__dirname)}/bundle`,
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "build.js"
   }
 }
