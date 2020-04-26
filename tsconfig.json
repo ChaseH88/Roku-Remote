@@ -13,11 +13,12 @@
     "strict": true,
     "outDir": "build",
     "lib": ["es6", "es7", "dom"],
-    "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
-    // "paths": {
-    //   "<CUSTOM ALIAS>/*": ["./<FOLDER_NAME>/*"]
-    // }
+    "baseUrl": "src",
+    "paths": {
+      "state/*": ["state/*"],
+      "types/*": ["types/*"],
+    }
   },
   "include": [
     "src/*"

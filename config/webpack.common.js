@@ -52,7 +52,11 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".css", ".ts", ".tsx"]
+    extensions: ["*", ".js", ".jsx", ".css", ".css", ".ts", ".tsx"],
+    alias: {
+      'state': resolve(__dirname, '../src/state'),
+      'types': resolve(__dirname, '../src/types')
+    }
   },
   output: {
     path: `${resolve(__dirname)}/bundle`,
