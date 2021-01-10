@@ -3,24 +3,35 @@
     "name": "up",
     "text": "Up",
     "icon": "fa-arrow-up",
+    "keyCode": 38,
     "endpoint": "/keypress/Up"
   },
   {
     "name": "down",
     "text": "Down",
     "icon": "fa-arrow-down",
+    "keyCode": 40,
     "endpoint": "/keypress/Down"
   },
   {
     "name": "left",
     "text": "Left",
     "icon": "fa-arrow-left",
+    "keyCode": 37,
     "endpoint": "/keypress/Left"
   },
   {
     "name": "right",
     "text": "Right",
     "icon": "fa-arrow-right",
+    "keyCode": 39,
     "endpoint": "/keypress/Right"
+  },
+  {
+    "name": "select",
+    "text": "Select",
+    "icon": "fa-hand-pointer-o",
+    "keyCode": 13,
+    "endpoint": "/keypress/Select"
   }
 ]

@@ -14,6 +14,9 @@ const ButtonContainer: FC = (): JSX.Element => (
           <div className="left">
             <Button {...useRokuButton('left')} />
           </div>
+          <div className="middle">
+            <Button {...useRokuButton('select')} />
+          </div>
           <div className="right">
             <Button {...useRokuButton('right')} />
           </div>
