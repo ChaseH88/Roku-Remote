@@ -1,0 +1,17 @@
+button.roku {
+
+  cursor: pointer;
+  font-size: 3em;
+  height: 1.5em;
+  width: 1.5em;
+  transition: 75ms ease all;
+
+  span {
+      display: inline-block;
+      text-indent: -9999vw;
+  }
+
+  &:active {
+      transform: scale(.9)
+  }
+}

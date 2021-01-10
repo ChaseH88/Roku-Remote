@@ -1,32 +1,19 @@
-export interface Account {
-  accountName: string
-  address1: string
-  address2: string
-  city: string
-  state: string
-  country: string
-  zip: string
-  businessType: string
-  website: string
-  contactName: string
-  contactEmail: string
-  contactNumber: string
-  createdDate: Date
-  accountUsers: User
+export interface MainAppState {
+  rokuRemote: RokuRemoteState
 }
 
-export interface User {
-  firstname: string;
-  lastName: string;
-  email: string;
-  photo: string;
-  role: Role;
-  password: string;
-  resetPasswordToken: string,
-  resetPasswordExpire: Date,
-  createdAt: Date;
+export interface RokuRemoteState {
+  poweredOn: boolean
 }
 
-export interface Role {
-  level: number
+export interface Action {
+  type: string,
+  payload: any
+}
+
+export interface RokuButton {
+  name: string,
+  text: string,
+  icon: string,
+  endpoint: string
 }

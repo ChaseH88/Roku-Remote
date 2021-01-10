@@ -1,17 +1,13 @@
 import React, { FC } from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { store } from "./state";
+import AppState from './state';
+import { ButtonContainer } from "./components/ButtonContainer";
+import './styles/_main.scss';
 
 const App: FC = () => (
-  <Provider store={store}>
-    <h1>React Starter with {` `}
-      <a
-        href="https://www.typescriptlang.org/"
-        target="_blank"
-      >TypeScript</a>
-    </h1>
-  </Provider>
+  <AppState>
+    <ButtonContainer />
+  </AppState>
 );
 
 const root = document.querySelector("#app");
