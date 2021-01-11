@@ -33,5 +33,54 @@
     "icon": "fa-hand-pointer-o",
     "keyCode": 13,
     "endpoint": "/keypress/Select"
+  },
+  {
+    "name": "back",
+    "text": "Back",
+    "icon": "fa-long-arrow-left",
+    "keyCode": 27,
+    "endpoint": "/keypress/Back"
+  },
+  {
+    "name": "home",
+    "text": "Home",
+    "icon": "fa-home",
+    "keyCode": 36,
+    "endpoint": "/keypress/Home"
+  },
+  {
+    "name": "play",
+    "text": "Play",
+    "icon": "fa-play",
+    "keyCode": 32,
+    "endpoint": "/keypress/Play"
+  },
+  {
+    "name": "volume-down",
+    "text": "Volume Down",
+    "icon": "fa-minus",
+    "keyCode": 109,
+    "endpoint": "/keypress/VolumeDown"
+  },
+  {
+    "name": "volume-up",
+    "text": "Volume Up",
+    "icon": "fa-plus",
+    "keyCode": 107,
+    "endpoint": "/keypress/VolumeUp"
+  },
+  {
+    "name": "volume-mute",
+    "text": "Volume Mute",
+    "icon": "fa-volume-off",
+    "keyCode": 106,
+    "endpoint": "/keypress/VolumeMute"
+  },
+  {
+    "name": "power",
+    "text": "Power On/Off",
+    "icon": "fa-power-off",
+    "keyCode": 17,
+    "endpoint": "/keypress/VolumeMute"
   }
 ]

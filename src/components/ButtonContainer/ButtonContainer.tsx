@@ -6,6 +6,8 @@ import { useRokuButton } from "../../hooks";
 const ButtonContainer: FC = (): JSX.Element => (
   <div id="button-container">
     <div className="container">
+
+      {/* Arrows and Select Button */}
       <div className="arrows">
         <div className="top">
           <Button {...useRokuButton('up')} />
@@ -25,6 +27,22 @@ const ButtonContainer: FC = (): JSX.Element => (
           <Button {...useRokuButton('down')} />
         </div>
       </div>
+
+      {/* Menu Buttons */}
+      <div className="volume">
+        <div className="container">
+          <div>
+            <Button {...useRokuButton('volume-down')} />
+          </div>
+          <div>
+            <Button {...useRokuButton('volume-mute')} />
+          </div>
+          <div>
+            <Button {...useRokuButton('volume-up')} />
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 );

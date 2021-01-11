@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import classNames from "classnames";
-import "./button.scss";
 import { useKeyPress } from "../../hooks";
+import { keySubmitAction } from "../../state/actions";
+import "./button.scss";
 
 export interface ButtonProps {
   name: string,
@@ -21,10 +22,12 @@ const Button: FC<ButtonProps> = ({
 
   const keyPressed = useKeyPress(keyCode);
 
-  keyPressed && console.log(text, keyPressed);
+  useEffect(() => {
+    keyPressed && handleClick(endpoint);
+  }, [keyPressed]);
 
   const handleClick = (endpoint: string) => {
-    console.log(endpoint);
+    keySubmitAction(endpoint)
   }
 
   return (

@@ -9,7 +9,8 @@ import { MainAppState, Action } from "../types/interfaces";
 export const initialState: MainAppState = {
   rokuRemote: {
     poweredOn: false
-  }
+  },
+  history: null
 }
 
 /**

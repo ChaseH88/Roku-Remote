@@ -1,10 +1,16 @@
 export interface MainAppState {
   rokuRemote: RokuRemoteState
+  history: CommandHistoryState | null
 }
 
 export interface RokuRemoteState {
   poweredOn: boolean
 }
+
+export interface CommandHistoryState {
+  command: string,
+  timeStamp: Date
+}[]
 
 export interface Action {
   type: string,
