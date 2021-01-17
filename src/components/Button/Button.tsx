@@ -27,7 +27,7 @@ const Button: FC<ButtonProps> = ({
   }, [keyPressed]);
 
   const handleClick = (endpoint: string) => {
-    keySubmitAction(endpoint)
+    keySubmitAction(name, endpoint)
   }
 
   return (

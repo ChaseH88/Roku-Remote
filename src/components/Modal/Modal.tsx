@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import { Modal as AntModal, Button as AntButton } from 'antd';
+import React, { FC } from 'react';
+import { Modal as AntModal } from 'antd';
+import { modalClosedAction } from "../../state/actions";
 
-const Modal = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+interface ModalProps {
+  title?: string,
+  handleOk?: any,
+  open: boolean
+}
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  return (
-    <>
-      <AntButton type="primary" onClick={showModal}>
-        Open Modal
-      </AntButton>
-      <AntModal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </AntModal>
-    </>
-  );
-};
+const Modal: FC<ModalProps> = ({
+  title,
+  children,
+  open = false,
+  handleOk = () => null
+}): JSX.Element => (
+  <>
+    <AntModal
+      title={title}
+      visible={open}
+      onOk={(e) => {
+        e.preventDefault();
+        handleOk();
+      }}
+      onCancel={() => modalClosedAction()}
+    >
+      {children}
+    </AntModal>
+  </>
+);
 
 export { Modal };

@@ -1,4 +1,5 @@
 import * as types from "./types";
+import { defaultModalOpen } from "./helpers";
 
 // Types
 import { MainAppState, Action } from "../types/interfaces";
@@ -7,10 +8,18 @@ import { MainAppState, Action } from "../types/interfaces";
  * The default app state
  */
 export const initialState: MainAppState = {
-  rokuRemote: {
-    poweredOn: false
+  app: {
+    modalOpen: defaultModalOpen()
   },
-  history: null
+  rokuConfig: {
+    baseSet: false,
+    baseURL: null,
+    lastUpdated: null
+  },
+  rokuRemote: {
+    poweredOn: false,
+    history: []
+  }
 }
 
 /**
@@ -27,6 +36,22 @@ export const reducer = (state: MainAppState, { type, payload }: Action): MainApp
         ...state,
         rokuRemote: {
           poweredOn: true
+        }
+      }
+
+    case types.MODAL_OPEN:
+      return {
+        ...state,
+        app: {
+          modalOpen: true
+        }
+      }
+
+    case types.MODAL_CLOSED:
+      return {
+        ...state,
+        app: {
+          modalOpen: false
         }
       }
 
