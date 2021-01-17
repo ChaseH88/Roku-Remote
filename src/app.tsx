@@ -5,7 +5,7 @@ import './styles/_main.scss';
 import 'antd/dist/antd.css';
 
 // Hooks
-import { useBodyStyle } from "./hooks";
+import { AppKey, useAppState, useBodyStyle } from "./hooks";
 
 // Containers
 import { ButtonContainer } from "./components/ButtonContainer";
@@ -20,8 +20,11 @@ declare global {
 const MainApp: FC = () => {
 
   const [ ready, setReady ] = useState(false);
+  const { baseSet } = useAppState(AppKey.rokuConfig)
 
   useEffect(() => {
+
+    console.log(window.rokuBaseURL)
 
     useBodyStyle('fontSize', '16px');
 
@@ -29,7 +32,7 @@ const MainApp: FC = () => {
       setReady(true);
     }
 
-  }, [window?.rokuBaseURL]);
+  }, [baseSet]);
 
   return (
     ready ?

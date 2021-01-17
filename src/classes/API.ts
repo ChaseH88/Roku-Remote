@@ -13,7 +13,7 @@ class API {
   protected token: string | null = null;
 
   protected api: AxiosInstance = axios.create({
-    baseURL: window.baseURL,
+    baseURL: `http://${window.rokuBaseURL}:8060/`,
     timeout: 1000 * 60, // one minute
     headers: {
       'Access-Control-Allow-Origin': '*'
@@ -56,13 +56,12 @@ class API {
    * @param data - The data being sent with the post.
    * @returns {APIResponse} An object containing success and the data
    */
-  public async post(endpoint: string, data: object = {}): Promise<APIResponse> {
+  public async post(endpoint: string, data: object = {}): Promise<any> {
     try {
-      return(
-        this.handleSuccess(
-          await this.api.post(endpoint, data, this.token && this.authHeader(this.token)) as AxiosResponse
-        )
-      );
+      const response = await fetch(`http://${window.rokuBaseURL}:8060/${endpoint}`, {
+        method: 'POST'
+      });
+      return response;
     }
     catch(err){
       return this.handleError(err);

@@ -28,16 +28,23 @@ export const addCommandHistoryAction = (name: string, command: string) => {
 
 }
 
-export const handleBaseRokuAction = (base: string) => {
-  console.log(base)
+export const handleBaseRokuAction = (base: string): void => {
+  setRokuBaseAction(base);
+  window.rokuBaseURL = base;
 }
+
+export const setRokuBaseAction = (base: string) => (
+  window.dispatch({
+    type: types.SET_ROKU_BASE,
+    payload: base
+  })
+);
 
 export const modalOpenAction = () => (
   window.dispatch({
     type: types.MODAL_OPEN
   })
 );
-
 
 export const modalClosedAction = () => (
   window.dispatch({

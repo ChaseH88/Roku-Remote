@@ -39,6 +39,17 @@ export const reducer = (state: MainAppState, { type, payload }: Action): MainApp
         }
       }
 
+    // --- Roku TV Powered On ---
+    case types.SET_ROKU_BASE:
+      return {
+        ...state,
+        rokuConfig: {
+          baseSet: !!payload.length,
+          baseURL: payload,
+          lastUpdated: new Date()
+        }
+      }
+
     case types.MODAL_OPEN:
       return {
         ...state,

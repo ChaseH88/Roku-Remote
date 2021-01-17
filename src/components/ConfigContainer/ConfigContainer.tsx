@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { Tooltip } from 'antd';
 import validator from 'validator';
 import { useAppState, AppKey } from "../../hooks/useAppState";
@@ -8,8 +8,9 @@ import "./config-container.scss";
 
 const ConfigContainer: FC = (): JSX.Element => {
 
+  const inputRef = useRef<any>();
   const { modalOpen } = useAppState(AppKey.app);
-  const [ base, setBase ] = useState<string>('');
+  const [ base, setBase ] = useState<string>('192.168.1.145');
   const [ error, setError ] = useState<boolean>(false);
 
   const handleChange = ({ value }: any): void => {
@@ -25,6 +26,7 @@ const ConfigContainer: FC = (): JSX.Element => {
     }
 
     // Handle error
+    inputRef.current.value = '';
     setError(true);
     setBase('');
 
@@ -49,6 +51,8 @@ const ConfigContainer: FC = (): JSX.Element => {
                 >
                   <input
                     type="text"
+                    defaultValue={base}
+                    ref={inputRef}
                     id="roku-base-url"
                     onChange={({ target }: any) => (
                       handleChange(target)
