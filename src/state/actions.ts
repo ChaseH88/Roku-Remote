@@ -1,6 +1,8 @@
 import * as types from "./types";
 import API from "../classes/API";
+import { addToStorage } from "../utilities";
 import { CommandHistoryInterface } from "../types/interfaces";
+import { AppKey } from "../classes/Storage";
 
 export const keySubmitAction = async (name: string, endpoint: string) => {
   try {
@@ -18,17 +20,18 @@ export const keySubmitAction = async (name: string, endpoint: string) => {
 
 export const addCommandHistoryAction = (name: string, command: string) => {
 
-  const entry: CommandHistoryInterface = {
+  const entry: CommandHistoryInterface[] = [{
     name,
     command,
     timeStamp: new Date()
-  }
+  }]
 
-  console.log(entry);
+  addToStorage(AppKey.commandHistory, entry);
 
 }
 
 export const handleBaseRokuAction = (base: string): void => {
+  addToStorage(AppKey.rokuBaseURL, base);
   setRokuBaseAction(base);
   window.rokuBaseURL = base;
 }

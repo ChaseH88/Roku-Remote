@@ -24,8 +24,6 @@ const MainApp: FC = () => {
 
   useEffect(() => {
 
-    console.log(window.rokuBaseURL)
-
     useBodyStyle('fontSize', '16px');
 
     if(window?.rokuBaseURL){
