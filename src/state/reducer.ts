@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { defaultModalOpen } from "./helpers";
+import { defaultModalOpen, checkRokuConfig } from "./helpers";
 
 // Types
 import { MainAppState, Action } from "../types/interfaces";
@@ -12,9 +12,7 @@ export const initialState: MainAppState = {
     modalOpen: defaultModalOpen()
   },
   rokuConfig: {
-    baseSet: false,
-    baseURL: null,
-    lastUpdated: null
+    ...checkRokuConfig()
   },
   rokuRemote: {
     poweredOn: false,

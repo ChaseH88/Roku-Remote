@@ -17,7 +17,6 @@ const AppState: FC = ({ children }: any): JSX.Element => {
 
   useEffect(() => {
     useSetValue('dispatch', dispatch);
-    useSetValue('rokuBaseURL', null)
   }, []);
 
   return(

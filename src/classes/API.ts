@@ -58,7 +58,7 @@ class API {
    */
   public async post(endpoint: string, data: object = {}): Promise<any> {
     try {
-      const response = await fetch(`http://${window.rokuBaseURL}:8060/${endpoint}`, {
+      const response = await fetch(`http://${window.rokuBaseURL}:8060${endpoint}`, {
         method: 'POST'
       });
       return response;
