@@ -2,10 +2,13 @@ import React, { FC } from "react";
 import { Button } from "../Button";
 import "./button-container.scss";
 import { useRokuButton } from "../../hooks";
+import { CommandHistory } from "../CommandHistory";
 
 const ButtonContainer: FC = (): JSX.Element => (
   <div id="button-container">
     <div className="container">
+
+      <CommandHistory />
 
       {/* Arrows and Select Button */}
       <div className="arrows">

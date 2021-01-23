@@ -6,7 +6,10 @@ import { Modal } from "../Modal";
 import { handleBaseRokuAction } from "../../state/actions";
 import "./config-container.scss";
 
+
 const ConfigContainer: FC = (): JSX.Element => {
+
+
 
   const inputRef = useRef<any>();
   const { modalOpen } = useAppState(AppKey.app);
@@ -41,24 +44,45 @@ const ConfigContainer: FC = (): JSX.Element => {
         <form action="">
           <fieldset>
             <div className="container">
-              <div className="form-elm">
-                <label htmlFor="roku-base-url">IP Address</label>
-                <Tooltip
-                  title="Invalid IP"
-                  color={'red'}
-                  key={'red'}
-                  visible={error}
-                >
-                  <input
-                    type="text"
-                    defaultValue={base}
-                    ref={inputRef}
-                    id="roku-base-url"
-                    onChange={({ target }: any) => (
-                      handleChange(target)
-                    )}
-                  />
-                </Tooltip>
+              <div className="form-row">
+                <div className="form-elm">
+                  <label htmlFor="roku-base-url">IP Address</label>
+                  <Tooltip
+                    title="Invalid IP"
+                    color={'red'}
+                    key={'red'}
+                    visible={error}
+                  >
+                    <input
+                      type="text"
+                      defaultValue={base}
+                      ref={inputRef}
+                      id="roku-base-url"
+                      onChange={({ target }: any) => (
+                        handleChange(target)
+                      )}
+                    />
+                  </Tooltip>
+                </div>
+                <div className="form-elm">
+                  <label htmlFor="roku-base-url">TV Name</label>
+                  <Tooltip
+                    title="Invalid Team Name"
+                    color={'red'}
+                    key={'red'}
+                    visible={error}
+                  >
+                    <input
+                      type="text"
+                      defaultValue={''}
+                      ref={inputRef}
+                      id="roku-team"
+                      onChange={({ target }: any) => (
+                        handleChange(target)
+                      )}
+                    />
+                  </Tooltip>
+                </div>
               </div>
             </div>
           </fieldset>

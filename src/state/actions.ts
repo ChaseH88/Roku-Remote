@@ -32,6 +32,11 @@ export const addCommandHistoryAction = (name: string, command: string) => {
 
 export const handleBaseRokuAction = (base: string): void => {
   addToStorage(AppKey.rokuBaseURL, base);
+  addToStorage(AppKey.rokuConfigs, [{
+    base,
+    name: 'testing',
+    dateAdded: new Date()
+  }]);
   setRokuBaseAction(base);
   window.rokuBaseURL = base;
 }

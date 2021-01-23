@@ -9,7 +9,7 @@ export interface ButtonProps {
   text: any,
   icon: string,
   keyCode: number,
-  endpoint: string
+  endpoint?: string
 }
 
 const Button: FC<ButtonProps> = ({
@@ -23,7 +23,7 @@ const Button: FC<ButtonProps> = ({
   const keyPressed = useKeyPress(keyCode);
 
   useEffect(() => {
-    keyPressed && handleClick(endpoint);
+    keyPressed && handleClick(endpoint!);
   }, [keyPressed]);
 
   const handleClick = (endpoint: string) => {
@@ -39,7 +39,7 @@ const Button: FC<ButtonProps> = ({
         icon
       )}
       onClick={() => (
-        handleClick(endpoint)
+        endpoint ? handleClick(endpoint) : null
       )}
     >
       <span>

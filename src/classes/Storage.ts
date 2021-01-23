@@ -1,6 +1,7 @@
 export enum AppKey {
   rokuBaseURL = 'rokuBaseURL',
-  commandHistory = 'commandHistory'
+  commandHistory = 'commandHistory',
+  rokuConfigs = 'rokuConfigs'
 }
 
 class Storage {
