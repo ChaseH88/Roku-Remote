@@ -9,9 +9,8 @@ export interface AppState {
 }
 
 export interface RokuConfigState {
-  baseSet: boolean,
-  baseURL: string | null,
-  lastUpdated: Date | null
+  selectedConfig?: null | RokuConfigInterface,
+  lastUpdated?: Date | null
 }
 
 export interface RokuRemoteState {
@@ -19,7 +18,15 @@ export interface RokuRemoteState {
   history?: CommandHistoryInterface[]
 }
 
+export interface RokuConfigInterface {
+  id: string,
+  base: string,
+  name: string,
+  dateAdded: Date
+}
+
 export interface CommandHistoryInterface {
+  id: string,
   name: string,
   command: string,
   timeStamp?: Date

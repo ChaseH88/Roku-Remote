@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Modal as AntModal, Button } from 'antd';
 import { modalClosedAction } from "../../state/actions";
+import "./modal.scss";
 
 interface ModalProps {
   title?: string,

@@ -42,8 +42,8 @@ export const reducer = (state: MainAppState, { type, payload }: Action): MainApp
       return {
         ...state,
         rokuConfig: {
-          baseSet: !!payload.length,
-          baseURL: payload,
+          // baseSet: !!payload.length,
+          // baseURL: payload,
           lastUpdated: new Date()
         }
       }

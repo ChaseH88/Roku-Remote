@@ -1,39 +1,56 @@
-import React, { FC, useRef, useState } from "react";
-import { Tooltip } from 'antd';
-import validator from 'validator';
-import { useAppState, AppKey } from "../../hooks/useAppState";
+import React, { FC, useEffect } from "react";
+import { uniqueKey } from "../../utilities";
+// import validator from 'validator';
+
+// Components
 import { Modal } from "../Modal";
-import { handleBaseRokuAction } from "../../state/actions";
+import { ConfigRow } from "../ConfigRow";
+
+// Styles
 import "./config-container.scss";
+
+// Hooks
+import { useAppState, AppKey } from "../../hooks/useAppState";
+import { useRokuConfig, useConfigState } from "../../hooks";
+// import { RokuConfigInterface } from "types/interfaces";
 
 
 const ConfigContainer: FC = (): JSX.Element => {
 
+  const config = {
+    id: uniqueKey(),
+    base: '',
+    name: '',
+    dateAdded: new Date()
+  };
 
-
-  const inputRef = useRef<any>();
+  const { configState, dispatch, Types } = useConfigState();
   const { modalOpen } = useAppState(AppKey.app);
-  const [ base, setBase ] = useState<string>('192.168.1.145');
-  const [ error, setError ] = useState<boolean>(false);
+  const { configList } = useRokuConfig();
 
-  const handleChange = ({ value }: any): void => {
-    setError(false);
-    setBase(value);
-  };
+  useEffect(() => {
 
-  const handleSubmit = (): void => {
+    let data = [ config ]
+    configList?.length && (data = [
+      ...configList,
+      ...data
+    ])
+    dispatch({
+      type: Types.SET_LOAD_STATE,
+      payload: data
+    })
 
-    // Check if input is an IP
-    if(validator.isIP(base)){
-      return handleBaseRokuAction(base);
-    }
+  }, []);
 
-    // Handle error
-    inputRef.current.value = '';
-    setError(true);
-    setBase('');
+  const handleButton = (e: any, func: any) => {
+    e.preventDefault();
+    func();
+  }
 
-  };
+  const handleSubmit = () => {
+    console.log(configState)
+  }
+
 
   return (
     <div id="config-container">
@@ -43,47 +60,27 @@ const ConfigContainer: FC = (): JSX.Element => {
       >
         <form action="">
           <fieldset>
-            <div className="container">
-              <div className="form-row">
-                <div className="form-elm">
-                  <label htmlFor="roku-base-url">IP Address</label>
-                  <Tooltip
-                    title="Invalid IP"
-                    color={'red'}
-                    key={'red'}
-                    visible={error}
-                  >
-                    <input
-                      type="text"
-                      defaultValue={base}
-                      ref={inputRef}
-                      id="roku-base-url"
-                      onChange={({ target }: any) => (
-                        handleChange(target)
-                      )}
+            <div className="config-container">
+              {configState ?
+                configState.map((config, i) => (
+                  <div key={config!.id}>
+                    <ConfigRow
+                      handleChange={dispatch}
+                      rowData={config}
                     />
-                  </Tooltip>
-                </div>
-                <div className="form-elm">
-                  <label htmlFor="roku-base-url">TV Name</label>
-                  <Tooltip
-                    title="Invalid Team Name"
-                    color={'red'}
-                    key={'red'}
-                    visible={error}
-                  >
-                    <input
-                      type="text"
-                      defaultValue={''}
-                      ref={inputRef}
-                      id="roku-team"
-                      onChange={({ target }: any) => (
-                        handleChange(target)
-                      )}
+                    {configState.length === (i+1) ?
+                      <button onClick={(e: any) => handleButton(e, dispatch({ type: Types.ADD }))}>Add</button> :
+                      <button onClick={(e: any) => handleButton(e, dispatch({ type: Types.DELETE, payload: config.id }))}>Delete</button>
+                    }
+                  </div>
+                )) :
+                  <div key={'config.id'}>
+                    <ConfigRow
+                      handleChange={dispatch}
+                      rowData={null}
                     />
-                  </Tooltip>
-                </div>
-              </div>
+                  </div>
+              }
             </div>
           </fieldset>
         </form>

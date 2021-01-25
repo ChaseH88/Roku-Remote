@@ -1,5 +1,5 @@
 export enum AppKey {
-  rokuBaseURL = 'rokuBaseURL',
+  selectedConfig = 'selectedConfig',
   commandHistory = 'commandHistory',
   rokuConfigs = 'rokuConfigs'
 }
