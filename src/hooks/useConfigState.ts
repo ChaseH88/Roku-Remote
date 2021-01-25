@@ -4,14 +4,14 @@ import { useReducer } from "react"
 
 export enum Types {
   SET_LOAD_STATE = 'SET_LOAD_STATE',
-  CHANGE = 'CHANGE',
-  ADD = 'ADD',
-  DELETE = 'DELETE'
+  CHANGE         = 'CHANGE',
+  ADD            = 'ADD',
+  DELETE         = 'DELETE'
 }
 
 /**
  * Handles the State for the Configuration Container
- * @example { config, dispatch, Types } = useConfigState();
+ * @example [ config, dispatch ] = useConfigState();
  */
 export const useConfigState = () => {
 
@@ -29,6 +29,7 @@ export const useConfigState = () => {
         return payload
 
       case Types.CHANGE:
+        // TODO
         return state
 
       case Types.ADD:
@@ -40,18 +41,18 @@ export const useConfigState = () => {
         }];
 
       case Types.DELETE:
-        const data = state!.filter((config: any) => (
+        return state!.filter((config: any) => (
           config.id !== payload
         ));
-        return data;
 
       default:
         return state;
     }
   };
 
-  const [ configData, dispatch ] = useReducer(configReducer, [ config ]);
-
-  return [ configData, dispatch ] as [ RokuConfigInterface[], React.Dispatch<any> ]
+  return useReducer(configReducer, [ config ]) as [
+    RokuConfigInterface[],
+    React.Dispatch<{ type: string, payload?: any }>
+  ]
 
 }
