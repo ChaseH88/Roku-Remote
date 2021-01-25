@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import { Modal as AntModal, Button } from 'antd';
 import { modalClosedAction } from "../../state/actions";
+import { uniqueKey } from "../../utilities";
 import "./modal.scss";
 
 interface ModalProps {
@@ -30,7 +31,7 @@ const Modal: FC<ModalProps> = ({
 
   const [ loading, setLoading ] = useState<boolean>(false);
   const [ footerState ] = useState(showFooter ? [
-    <>
+    <Fragment key={uniqueKey()}>
       {showCancelBtn &&
         <Button
           key="back"
@@ -40,8 +41,8 @@ const Modal: FC<ModalProps> = ({
           {cancelBtnText}
         </Button>
       }
-    </>,
-    <>
+    </Fragment>,
+    <Fragment key={uniqueKey()}>
       {showOkBtn &&
         <Button
           key="submit"
@@ -52,7 +53,7 @@ const Modal: FC<ModalProps> = ({
           {!loading ? okBtnTest : ''}
         </Button>
       }
-    </>,
+    </Fragment>,
   ]: []);
 
   const handleCancel = () => blockCancel ? null : modalClosedAction();

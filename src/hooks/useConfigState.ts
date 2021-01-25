@@ -2,7 +2,7 @@ import { RokuConfigInterface } from "../types/interfaces";
 import { uniqueKey } from "../utilities/uniqueKey";
 import { useReducer } from "react"
 
-enum Types {
+export enum Types {
   SET_LOAD_STATE = 'SET_LOAD_STATE',
   CHANGE = 'CHANGE',
   ADD = 'ADD',
@@ -50,12 +50,8 @@ export const useConfigState = () => {
     }
   };
 
-  const [ configState, dispatch ] = useReducer(configReducer, [ config ]) as [ RokuConfigInterface[], React.Dispatch<any> ];
+  const [ configData, dispatch ] = useReducer(configReducer, [ config ]);
 
-  return {
-    configState,
-    dispatch,
-    Types
-  };
+  return [ configData, dispatch ] as [ RokuConfigInterface[], React.Dispatch<any> ]
 
 }

@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from "react";
-import { uniqueKey } from "../../utilities";
+import React, { FC } from "react";
+import { handleBaseRokuAction } from "state/actions";
 // import validator from 'validator';
 
 // Components
@@ -11,45 +11,30 @@ import "./config-container.scss";
 
 // Hooks
 import { useAppState, AppKey } from "../../hooks/useAppState";
-import { useRokuConfig, useConfigState } from "../../hooks";
-// import { RokuConfigInterface } from "types/interfaces";
+import { useConfigState, Types } from "../../hooks/useConfigState";
 
 
 const ConfigContainer: FC = (): JSX.Element => {
 
-  const config = {
-    id: uniqueKey(),
-    base: '',
-    name: '',
-    dateAdded: new Date()
-  };
-
-  const { configState, dispatch, Types } = useConfigState();
+  const [ configState, dispatch ] = useConfigState();
   const { modalOpen } = useAppState(AppKey.app);
-  const { configList } = useRokuConfig();
 
-  useEffect(() => {
-
-    let data = [ config ]
-    configList?.length && (data = [
-      ...configList,
-      ...data
-    ])
-    dispatch({
-      type: Types.SET_LOAD_STATE,
-      payload: data
-    })
-
-  }, []);
-
+  /**
+   * Handles 'Add' and 'Delete' functionality
+   * @param e Button click event
+   * @param func Dispatch function
+   */
   const handleButton = (e: any, func: any) => {
     e.preventDefault();
     func();
   }
 
-  const handleSubmit = () => {
-    console.log(configState)
-  }
+  /**
+   * Handle Configuration 'Submit' button
+   */
+  const handleSubmit = () => (
+    handleBaseRokuAction(configState)
+  )
 
 
   return (
@@ -65,18 +50,31 @@ const ConfigContainer: FC = (): JSX.Element => {
                 configState.map((config, i) => (
                   <div key={config!.id}>
                     <ConfigRow
-                      handleChange={dispatch}
+                      handleChange={() => dispatch}
                       rowData={config}
                     />
                     {configState.length === (i+1) ?
-                      <button onClick={(e: any) => handleButton(e, dispatch({ type: Types.ADD }))}>Add</button> :
-                      <button onClick={(e: any) => handleButton(e, dispatch({ type: Types.DELETE, payload: config.id }))}>Delete</button>
+                      <button
+                        onClick={(e: any) => handleButton(e, () => dispatch({
+                          type: Types.ADD
+                        }))}
+                      >
+                        Add
+                      </button>
+                      :
+                      <button
+                        onClick={(e: any) => handleButton(e, () => dispatch({
+                          type: Types.DELETE, payload: config.id
+                        }))}
+                      >
+                        Delete
+                      </button>
                     }
                   </div>
                 )) :
                   <div key={'config.id'}>
                     <ConfigRow
-                      handleChange={dispatch}
+                      handleChange={() => dispatch}
                       rowData={null}
                     />
                   </div>

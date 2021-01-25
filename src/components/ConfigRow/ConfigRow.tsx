@@ -5,19 +5,22 @@ import { RokuConfigInterface } from "types/interfaces";
 import { Tooltip } from 'antd';
 import { Input } from 'antd';
 
+// Hooks
+import { Types } from "../../hooks/useConfigState"
+
 interface ConfigRowProps {
   handleChange: any,
   rowData?: RokuConfigInterface | null
 }
 
 const ConfigRow: FC<ConfigRowProps> = ({
-  handleChange,
+  handleChange: dispatch,
   rowData = null
 }): JSX.Element => {
 
   const handle = (e: any) => {
-    handleChange(e, {
-      type: 'CHANGE',
+    dispatch({
+      type: Types.CHANGE,
       payload: rowData
     })
   }
