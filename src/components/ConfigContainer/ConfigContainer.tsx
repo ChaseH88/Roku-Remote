@@ -12,6 +12,7 @@ import "./config-container.scss";
 // Hooks
 import { useAppState, AppKey } from "../../hooks/useAppState";
 import { useConfigState, Types } from "../../hooks/useConfigState";
+import { RokuConfigInterface } from "types/interfaces";
 
 
 const ConfigContainer: FC = (): JSX.Element => {
@@ -36,6 +37,16 @@ const ConfigContainer: FC = (): JSX.Element => {
     handleBaseRokuAction(configState)
   )
 
+  const handleChange = (rowData: RokuConfigInterface, e: any) => {
+    dispatch({
+      type: Types.CHANGE,
+      payload: {
+        id: rowData,
+        value: e
+      }
+    })
+  }
+
 
   return (
     <div id="config-container">
@@ -50,7 +61,7 @@ const ConfigContainer: FC = (): JSX.Element => {
                 configState.map((config, i) => (
                   <div key={config!.id}>
                     <ConfigRow
-                      handleChange={() => dispatch}
+                      handleChange={(a: any, b: any) => handleChange(a, b)}
                       rowData={config}
                     />
                     {configState.length === (i+1) ?
@@ -74,7 +85,7 @@ const ConfigContainer: FC = (): JSX.Element => {
                 )) :
                   <div key={'config.id'}>
                     <ConfigRow
-                      handleChange={() => dispatch}
+                      handleChange={(a: any, b: any) => handleChange(a, b)}
                       rowData={null}
                     />
                   </div>

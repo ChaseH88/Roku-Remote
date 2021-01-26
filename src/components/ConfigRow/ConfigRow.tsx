@@ -6,7 +6,7 @@ import { Tooltip } from 'antd';
 import { Input } from 'antd';
 
 // Hooks
-import { Types } from "../../hooks/useConfigState"
+// import { Types } from "../../hooks/useConfigState"
 
 interface ConfigRowProps {
   handleChange: any,
@@ -14,16 +14,15 @@ interface ConfigRowProps {
 }
 
 const ConfigRow: FC<ConfigRowProps> = ({
-  handleChange: dispatch,
+  handleChange,
   rowData = null
 }): JSX.Element => {
 
-  const handle = (e: any) => {
-    dispatch({
-      type: Types.CHANGE,
-      payload: rowData
+  const handle = ({ name, value }: any) => (
+    handleChange(rowData?.id, {
+      [name]: value
     })
-  }
+  )
 
   return (
     <div className="form-row">
